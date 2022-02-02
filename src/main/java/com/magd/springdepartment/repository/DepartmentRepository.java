@@ -10,6 +10,6 @@ public interface DepartmentRepository extends JpaRepository<Department,Long> {
     Department findByDepartmentName(String departmentName);
 
     // TODO: define a special query
-    @Query(value = "SELECT *",nativeQuery = true)
+    @Query(value = "SELECT * FROM departments d WHERE LOWER(d.departmentName) = ?1",nativeQuery = true)
     Department findByDepartmentNameIgnoreCase(String departmentName);
 }

@@ -1,6 +1,7 @@
 package com.magd.springdepartment.controller;
 
 import com.magd.springdepartment.entity.Department;
+import com.magd.springdepartment.exception.DepartmentNotFoundException;
 import com.magd.springdepartment.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +33,11 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) {
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         LOGGER.info("Inside fetchDepartmentById of DepartmentController");
         return departmentService.fetchDepartmentById(departmentId);
     }
-    @GetMapping("/departments/{name}")
+    @GetMapping("/departments/name/{name}")
     public Department fetchDepartmentByName(@PathVariable("name") String departmentName) {
         LOGGER.info("Inside fetchDepartmentByName of DepartmentController");
         return departmentService.fetchDepartmentByName(departmentName);
